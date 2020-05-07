@@ -60,10 +60,15 @@ import oferta4 from '../../img/oferta4.png';
                     <div className="titulo-productos d-flex flex-column">
                         <h6>Pasea con estilo</h6>
                         <h3><span>NUEVOS PRODUCTOS</span></h3>
+                        <ul className="d-flex flex-row filtro-categoria">
+                            <li>Carretera</li>
+                            <li>Montaña</li>
+                            <li>Urbanas</li>
+                        </ul>
                     </div>
                 </div>
                 <div className="row">
-                    {novedades.map(produc => <Productos productos={produc} /> )}
+                    {novedades.filter( nov => nov.categoria == 'carretera').map(nov => <Productos productos={nov} /> )}
                 </div>
             </div>
         </div>

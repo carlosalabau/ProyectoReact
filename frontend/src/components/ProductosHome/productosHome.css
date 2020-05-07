@@ -47,7 +47,10 @@
     width: 50%;
 }
 .ofertas {
-display: flex;
-align-items: center;
-justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.filtro-categoria{
+    list-style: none;
 }
