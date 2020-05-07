@@ -13,7 +13,7 @@ const biciSchema = new mongoose.Schema({
     cantidad: Number,
     descripcion: String,
     imagen: String,
-    funcion: String,
+    categoria: String,
     esNovedad: Boolean,
     proximaEntrada: Date,
     pedidosId: {

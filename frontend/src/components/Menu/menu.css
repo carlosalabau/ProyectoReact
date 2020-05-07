@@ -32,3 +32,21 @@
     color: rgb(251, 213, 10);
   }
   
+  .servicios{
+    height: 150px;
+}
+.servicios-icon i{
+    padding: 20px;
+    border: 2px solid  rgb(251, 213, 10);;
+    border-radius: 50%;
+    font-size: 30px;
+}
+.servicios-info{
+    margin-left: 20px;
+}
+.funciones{
+    height: 250px;
+}
+.ofertas img{
+    width: 100%;
+}

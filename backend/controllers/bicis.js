@@ -17,6 +17,14 @@ const BiciController = {
             res.status(500).send('Ha ocurrido un error al mostrar las novedades');
         }
     },
+    async Detalles(req,res){
+        try {
+            const detalles = await BiciModel.findById(req.params._id).populate('usuarioId');
+            res.send(detalles)
+        } catch (error) {
+            res.status(500).send('Ha ocurrido un error al mostrar detalle del producto')
+        }
+    },
     async Nueva(req,res){
         try {
             const nuevaBici = await BiciModel.create(req.body);

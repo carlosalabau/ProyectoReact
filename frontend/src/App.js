@@ -1,15 +1,19 @@
 import React from 'react';
 import './App.css';
-import Menu from './components/Menu';
-import Contenido from './components/Contenido';
-import ListarProductos from './components/Productos';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Menu from './components/Menu/Menu';
+import ProductosHome from './components/ProductosHome/ProductosHome';
 
 function App() {
   return (
     <div>
+      <BrowserRouter>
       <Menu />
-      <Contenido />
-      <ListarProductos />
+      <Switch>
+      <Route path="/" component={ProductosHome} exact/>
+      </Switch>
+      </BrowserRouter>
+
     </div>
   );
 }
