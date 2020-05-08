@@ -5,7 +5,7 @@ import './productos.css';
  const Productos = ({productos}) => {
     return (
             <div className="col-xl-4 col-lg-4 col-md-4 box-product">
-                <Link className="producto" key={productos._id} to={'/detalles/' +productos._id}>
+                <Link className="producto" key={productos._id} to={'/detalles/' + productos._id}>
                     <div className="imagen-producto d-flex justify-content-center">
                         <img src={productos.imagen} alt="Producto" />   
                     </div>
@@ -16,7 +16,6 @@ import './productos.css';
                     </div>
                 </Link>
             </div>
-       
     )
 }
 

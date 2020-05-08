@@ -46,6 +46,8 @@
     -->
     <script src="owlcarousel/jquery.js"></script>
     <script src="owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/746846aaa2.js" crossorigin="anonymous"></script>
     <script>
       $(document).ready(function(){
      $('.owl-carousel').owlCarousel({
@@ -57,8 +59,16 @@
      });
     })
       </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/746846aaa2.js" crossorigin="anonymous"></script>
- 
+    <script>
+      window.onscroll = function() {
+  let nav = document.getElementById('nav');
+  if(window.scrollY > 900 ){
+  nav.style.cssText = 'background-color: black';
+  }
+  if(window.scrollY < 900){
+      nav.style.cssText = 'background-color: transparent';
+  }
+};
+    </script>
   </body>
 </html>

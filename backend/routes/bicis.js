@@ -3,10 +3,11 @@ var router = express.Router();
 const BiciController = require('../controllers/bicis');
 
 /* GET users listing. */
-router.get('/', BiciController.Listar);
+router.get('/detalles/:_id', BiciController.Detalles);
 router.get('/novedades', BiciController.Novedades);
-router.get('/detalles/:id', BiciController.Actualizar);
+router.get('/categoria/:categoria', BiciController.PorCategoria);
 router.post('/agregar', BiciController.Nueva);
-router.put('/actualizar/:id', BiciController.Actualizar);
+router.put('/actualizar/:_id', BiciController.Actualizar);
+router.get('/', BiciController.Listar);
 
 module.exports = router;

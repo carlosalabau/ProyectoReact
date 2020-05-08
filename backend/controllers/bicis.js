@@ -19,11 +19,20 @@ const BiciController = {
     },
     async Detalles(req,res){
         try {
-            const detalles = await BiciModel.findById(req.params._id).populate('usuarioId');
-            res.send(detalles)
+            const detalle = await BiciModel.findById(req.params._id)/* .populate('usuarioId'); */
+            res.send(detalle)
         } catch (error) {
             res.status(500).send('Ha ocurrido un error al mostrar detalle del producto')
         }
+    },
+    async PorCategoria(req,res){
+        try {
+            const nombre = await BiciModel.find({categoria: req.params.categoria});
+            res.send(nombre)
+        } catch (error) {
+           res.status(500).send('Ha ocurrido un error al buscar por Categoria') 
+        }
+        
     },
     async Nueva(req,res){
         try {

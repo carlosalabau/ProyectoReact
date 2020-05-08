@@ -1,0 +1,41 @@
+.detalle{
+    margin-top: 80px;
+    height: 200px;
+    width: 100%;
+    background-color: #eee;
+    list-style: none;
+    padding: 0;
+}
+.detalle li{
+    padding: 0 10px;
+}
+.menu{
+    background-color: black;
+}
+.imagen{
+    padding: 20px;
+}
+.imagen img{
+    width: 100%;
+}
+.info{
+    padding: 0 20px;
+}
+.desc{
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+.boton{
+    background-color: black;
+    margin-left: 30px;
+}
+.ant-input-number{
+    width: 110px !important;
+    padding-left: 60px !important;
+}
+.qty{
+    position: absolute;
+    z-index: 1;
+    margin-left: 5px;
+    margin-top: 5px;
+}

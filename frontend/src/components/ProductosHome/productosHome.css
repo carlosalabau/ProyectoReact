@@ -4,7 +4,6 @@
 }
 .titulo-productos h6{
     font-family: 'Yellowtail', cursive;
-    text-align: center;
     font-size: 30px;
     color: #ffd80a;
 }
@@ -29,6 +28,7 @@
 .contenedor{
     width: 100%;
     height: auto;
+    margin-top: 100px;
 }
 .ofertas img{
     width: 100%;
@@ -53,4 +53,8 @@
 }
 .filtro-categoria{
     list-style: none;
+}
+.filtro-categoria li{
+    padding: 20px;
+    font-size: 16px
 }
