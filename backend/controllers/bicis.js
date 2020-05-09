@@ -44,7 +44,7 @@ const BiciController = {
     },
     async Actualizar(req,res){
         try {
-            const actualizar = await BiciModel.findOneAndUpdate(req.params._id, req.body, {new: true});
+            const actualizar = await BiciModel.findByIdAndUpdate(req.params._id, req.body, {new: true});
             res.send(actualizar)
         } catch (error) {
             res.status(500).send('Ha ocurrido un error al actualizar la bicicleta');

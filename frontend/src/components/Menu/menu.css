@@ -28,10 +28,9 @@
     color: white;
     text-decoration: none;
   }
-  .iconos{
+  .iconos, .iconos li a{
     color: rgb(251, 213, 10);
   }
-  
   .servicios{
     height: 150px;
 }
@@ -49,4 +48,22 @@
 }
 .ofertas img{
     width: 100%;
+}
+.ant-modal-header{
+  text-align: center;
+}
+.ant-modal-body, #exampleModal{
+  padding: 35px 55px !important;
+}
+.ant-input-password{
+  margin-top:20px;
+}
+.owl-item img{
+ width: 80% !important
+}
+.inputModal{
+  margin-bottom: 20px !important
+}
+.ant-btn{
+  margin-top: 20px;
 }

@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const ObjectId = mongoose.SchemaTypes.ObjectId;
 
 const usuarioSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: [true, 'El email no es correcto']
+        required: [true, 'El email no es correcto'],
+        unique: true
     },
     password: {
         type: String,
@@ -14,8 +14,20 @@ const usuarioSchema = new mongoose.Schema({
         type: String,
         required: [true, 'El campo nombre no es correcto']
     },
-    apellidos: {
-        type: String,
-        required: [true, 'El campo apellidos no es correcto']
+    rol: {
+        type: String
+    },
+    tokens: [String]
+}, {
+    timestamps: true,
+    toJSON: {
+        transform: (doc, ret) => {
+            delete ret.tokens;
+            delete ret.password;
+            return ret
+        }
     }
 })
+const UsuarioModel = mongoose.model('Usuario', usuarioSchema);
+
+module.exports = UsuarioModel;

@@ -12,8 +12,8 @@ db.once('open', function() {
   console.log('Conexion exitosa')
 });
 
-var indexRouter = require('./routes/index');
-var bicisRouter = require('./routes/bicis');
+const UsuarioRouter = require('./routes/usuario');
+const bicisRouter = require('./routes/bicis');
 
 var app = express();
 
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/usuario', UsuarioRouter);
 app.use('/bicicletas', bicisRouter);
 
 module.exports = app;

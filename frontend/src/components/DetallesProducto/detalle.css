@@ -39,3 +39,21 @@
     margin-left: 5px;
     margin-top: 5px;
 }
+.detalleProducto{
+    border-bottom: 1px solid #eee;
+}
+.relacionados{
+    margin-top: 100px;
+}
+.relacionados h3{
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+.relacionados h3::before{
+    position: absolute;
+    bottom: -73px;
+    width: 50px;
+    height: 3px;
+    content: "";
+    background-color: #ffd80a;
+}

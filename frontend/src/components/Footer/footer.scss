@@ -1,0 +1,40 @@
+footer{
+    background-color: #222222;
+    padding: 50px 0;
+    margin-top: 80px;
+    color: #ccc;
+    font-size: 15px;
+    h4, h2{
+        color:white
+    }
+}
+
+.iconFooter i{
+color: #ffd80a;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li{
+        padding: 5px 0;
+    }
+}
+ul li:hover{
+        color: #ffd80a;
+        cursor: pointer;
+}
+.redes{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+        display: inline;
+        padding: 0 5px;
+    }
+    i{
+        font-size: 22px;
+        color: #ffd80a;
+    }
+   
+}
