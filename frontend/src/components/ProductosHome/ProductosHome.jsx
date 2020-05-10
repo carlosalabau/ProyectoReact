@@ -6,7 +6,8 @@ import oferta1 from "../../img/oferta1.jpg";
 import oferta2 from "../../img/oferta2.png";
 import oferta3 from "../../img/oferta3.png";
 import oferta4 from "../../img/oferta4.png";
-import { Submenu } from "../Menu/Submenu/Submenu";
+import  Submenu  from "../Menu/Submenu/Submenu";
+import Menu from '../Menu/Menu';
 
 const ProductosHome = () => {
   const [productos, setProductos] = useState([]);
@@ -33,6 +34,7 @@ const ProductosHome = () => {
 
   return (
     <div>
+      <Menu />
       <Submenu />
       <div className="container">
         <div className="row justify-content-center align-item-center">

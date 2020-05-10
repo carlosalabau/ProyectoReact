@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Login = () => {
+const ProductosBusqueda = () => {
     return (
         <div>
             

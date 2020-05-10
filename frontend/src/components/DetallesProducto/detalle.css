@@ -1,3 +1,13 @@
+.modal-open{
+    overflow: visible;
+    padding: 0 !important;
+}
+.modal-backdrop.show{
+    opacity: 0
+}
+.modal-backdrop{
+    all: unset
+}
 .detalle{
     margin-top: 80px;
     height: 200px;

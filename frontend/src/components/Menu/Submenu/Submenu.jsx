@@ -7,7 +7,7 @@ import mark1 from '../../../img/mark1.jpg';
 import mark2 from '../../../img/mark2.jpg';
 import mark3 from '../../../img/mark3.jpg';
 
-export const Submenu = () => {
+const Submenu = () => {
     return (
         <div className="container-fluid">
             <div className="row ">
@@ -64,3 +64,4 @@ export const Submenu = () => {
                 </div>
     )
 }
+export default Submenu;

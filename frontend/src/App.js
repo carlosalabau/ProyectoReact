@@ -11,7 +11,6 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Menu />
         <Switch>
           <Route path="/" component={ProductosHome} exact />
           <Route path="/detalles/:_id" component={Detalles} exact />

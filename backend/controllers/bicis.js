@@ -34,6 +34,18 @@ const BiciController = {
         }
         
     },
+    async PorNombre(req,res){
+        try {
+            const marca = new RegExp(`${req.params.marca}`, 'i');
+            const bicis = await BiciModel.find({
+                marca
+            })
+            res.send(bicis)
+        } catch (error) {
+            res.status(500).send({mensaje:'Ha ocurrido un error al buscar por marca'})
+            console.log(error)
+        }
+    },
     async Nueva(req,res){
         try {
             const nuevaBici = await BiciModel.create(req.body);

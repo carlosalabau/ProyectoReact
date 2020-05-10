@@ -3,7 +3,8 @@ const PedidosModel = require('../models/pedidos');
 const PedidosController = {
     async Agregar(req,res){
         try {
-            req.body.pedido = 'pendiente';
+            req.body.estado = 'pendiente';
+            req.body.userId = req.user._id;
             const nuevo = await PedidosModel.create(req.body);
             res.send(nuevo)
         } catch (error) {
@@ -20,12 +21,13 @@ const PedidosController = {
     },
     async ListarById(req,res){
         try {
-            const res = await PedidosModel.find({
-                _id: req.user._id    
+            const request = await PedidosModel.find({
+                userId: req.user._id    
             })
-            res.send(res)
+            res.send(request)
         } catch (error) {
             res.status(500).send('Ha ocurrido un error al revisar tus pedidos')
+            console.log(error)
         }
     }
 }

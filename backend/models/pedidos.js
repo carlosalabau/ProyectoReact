@@ -9,6 +9,10 @@ const pedidosSchema = new mongoose.Schema({
     fechaEntrega: {
         type: Date,
     },
+    cantidad:{
+        type: Number,
+        required: true
+    },
     userId: {
         type: ObjectId,
         ref: 'Usuario'

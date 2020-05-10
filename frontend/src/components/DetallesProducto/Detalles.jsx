@@ -71,7 +71,7 @@ const Detalles = () => {
             <h3>Productos relacionados</h3>
             <div className="prodRelacionados d-flex flex-row">
               {category
-                .filter((cat) => cat.categoria == producto.categoria)
+                .filter((cat) => cat.categoria === producto.categoria)
                 .slice(0, 3)
                 .map((produc) => (
                   <Productos key={produc._id} productos={produc} />
