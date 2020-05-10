@@ -14,6 +14,10 @@ const usuarioSchema = new mongoose.Schema({
         type: String,
         required: [true, 'El campo nombre no es correcto']
     },
+    ciudad: {
+        type: String,
+        required: true
+    },
     rol: {
         type: String
     },
@@ -28,6 +32,6 @@ const usuarioSchema = new mongoose.Schema({
         }
     }
 })
-const UsuarioModel = mongoose.model('Usuario', usuarioSchema);
+const UsuarioModel = mongoose.model('Usuarios', usuarioSchema);
 
 module.exports = UsuarioModel;

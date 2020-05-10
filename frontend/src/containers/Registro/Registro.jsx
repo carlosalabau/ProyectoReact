@@ -1,56 +1,17 @@
-import React, {Component} from 'react'
-import { Modal, Input, Button } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import React from 'react'
+import { Form, Input, Button, Checkbox } from 'antd';
 
-export default class Menu extends Component {
 
-  state = { visible: false };
+const Registro = () => {
 
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
+    return (
+      <div className="registerContainer">
+    <Button type="primary">Primary</Button>
+    <Button>Default</Button>
+    <Button type="dashed">Dashed</Button>
+    <Button type="link">Link</Button>
+      </div>
+    );
+  }
 
-  handleOk = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  };
-
-  handleCancel = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false
-    });
-  };
-  render() {
-  return (
-    <div>
-      <Modal
-          title="REGISTRO"
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-          footer={[
-            <Button key="back" onClick={this.handleCancel}>
-              Volver
-            </Button>,
-            <Button key="submit" type="primary" onClick={this.handleOk}>
-              Registrate
-            </Button>,
-          ]}
-        >
-          <Input
-            placeholder="Introduce tu nombre de usuario"
-            prefix={<UserOutlined className="site-form-item-icon" />}
-          />
-          <Input.Password placeholder="Introduce tu password" />
-          <Button type="primary">Log In</Button>
-        </Modal>
-    </div>
-  )
-
-        }
-      }
+export default Registro;

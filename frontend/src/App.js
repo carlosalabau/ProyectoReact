@@ -5,7 +5,7 @@ import Menu from "./components/Menu/Menu";
 import ProductosHome from "./components/ProductosHome/ProductosHome";
 import Detalles from "./components/DetallesProducto/Detalles";
 import Footer from "./components/Footer/Footer";
-import Registro from './containers/Registro/Registro';
+
 
 function App() {
   return (

@@ -14,6 +14,7 @@ db.once('open', function() {
 
 const UsuarioRouter = require('./routes/usuario');
 const bicisRouter = require('./routes/bicis');
+const pedidosRouter = require('./routes/pedidos');
 
 var app = express();
 
@@ -26,5 +27,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/usuario', UsuarioRouter);
 app.use('/bicicletas', bicisRouter);
+app.use('/pedidos', pedidosRouter);
 
 module.exports = app;
