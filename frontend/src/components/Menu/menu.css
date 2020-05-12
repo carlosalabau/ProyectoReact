@@ -4,8 +4,9 @@
     border-bottom: 1px solid #eee;
     background-color: transparent;
     position:fixed;
-    z-index: 100;
+    z-index: 999;
     width: 100vw;
+    color: white
   }
   .menu .logo{
     font-family: 'Raleway', sans-serif;
@@ -31,8 +32,8 @@
   .menu>ul .active li{
     border-bottom: 2px solid rgb(251, 213, 10);
   }
-  .iconos, .iconos li a{
-    color: rgb(251, 213, 10);
+  .iconos, .iconos a{
+    color: rgb(251, 213, 10) !important;
   }
   .servicios{
     height: 150px;
@@ -51,6 +52,9 @@
 }
 .ofertas img{
     width: 100%;
+}
+.modal, body{
+  padding: 0 !important;
 }
 .ant-modal-header{
   text-align: center;

@@ -2,9 +2,8 @@ import React from "react";
 import "./menu.css";
 import Axios from "axios";
 import InputSearchAnt from '../../containers/InputSearchAnt/InputSearchAnt';
-import { NavLink } from 'react-router-dom';
-import { notification  } from 'antd';
-import { AudioOutlined } from '@ant-design/icons';
+import { NavLink, useHistory, Link } from 'react-router-dom';
+import { notification } from 'antd';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -17,8 +16,12 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import { connect } from "react-redux";
+import { login } from "../../redux/actions";
 
-const Menu = () => {
+const Menu = (props) => {
+  const history = useHistory();
+
   const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -68,12 +71,14 @@ const Menu = () => {
       email: event.target.email.value,
       password: event.target.password.value
     }
-    Axios.post('http://localhost:3000/usuario/registrar', user)
-      .then(() => {
-        document.querySelector('.modal').style.display = 'none !important';
-        notification.success({ message: 'Usuario creado con éxito' });
-        console.log(user)
 
+    Axios.post('http://localhost:3000/usuario/registrar', user)
+      .then(res => {
+        notification.success({ message: 'Usuario creado con éxito' });
+        document.querySelector('.modal').style.display = 'none !important';
+        setTimeout(() => {
+          history.go('/')
+        }, 2000)
       })
       .catch(console.error)
   }
@@ -84,13 +89,14 @@ const Menu = () => {
       email: event.target.Lemail.value,
       password: event.target.Lpassword.value
     }
-    Axios.post('http://localhost:3000/usuario/login', user)
+    login(user)
       .then(res => {
+        notification.success({ message: 'Usuario logueado con éxito' });
+
         setTimeout(() => {
-          localStorage.setItem('authToken', res.data.token);
-          notification.success({ message: 'Usuario logueado con éxito' });
-          console.log(user)
+          history.push('/')
         }, 2000)
+        console.log(user)
       })
       .catch(console.error)
   }
@@ -99,21 +105,21 @@ const Menu = () => {
       <div id="nav" className="row d-flex justify-content-between align-items-center menu">
         <p className="logo">BICISHOP</p>
         <ul className="d-flex flex-row">
-          <NavLink NavLink to="/">
+          <NavLink to='/' exact>
             <li>Inicio</li>
           </NavLink>
-          <NavLink NavLink to="/tienda">
+          <NavLink to="/tienda" exact>
             <li>Tienda</li>
           </NavLink>
-          <a href="#">
+          <NavLink to="/blog">
             <li>Blog</li>
-          </a>
-          <a href="#">
+          </NavLink>
+          <NavLink to="/about">
             <li>About</li>
-          </a>
-          <a href="#">
+          </NavLink>
+          <NavLink to="/contacto">
             <li>Contacto</li>
-          </a>
+          </NavLink>
         </ul>
         <ul className="d-flex flex-row iconos">
           <a data-toggle="modal" data-target="#Buscador">
@@ -122,13 +128,19 @@ const Menu = () => {
             </li>
           </a>
           <li>
-            <a data-toggle="modal" data-target="#ModalRegistro">
+            {!props.user ?
+              <a data-toggle="modal" data-target="#ModalRegistro">
+                <i className="far fa-user"></i>
+              </a>
+              :
               <i className="far fa-user"></i>
-            </a>
+            }
           </li>
-          <li>
-            <i className="fas fa-shopping-cart"></i>
-          </li>
+          <Link to={'/carrito'}>
+            <li>
+              <i className="fas fa-shopping-cart"></i>
+            </li>
+          </Link>
         </ul>
       </div>
       {/*  MODAL REGISTRO */}
@@ -202,62 +214,66 @@ const Menu = () => {
         </div>
       </div>
       {/* //MODAL LOGIN */}
-      <div className="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">LOGIN</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <form onSubmit={Login} className="d-flex flex-column justify-content-center">
-                <TextField
-                  className={classes.margin}
-                  id="input-with-icon-textfield"
-                  label="Email"
-                  name="Lemail"
-                />
-                <FormControl className={classes.margin}>
-                  <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-                  <Input
-                    id="standard-adornment-password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={values.password} name="Lpassword"
-                    onChange={handleChange('password')}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                        >
-                          {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
+      {!props.user ?
+        <div className="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">LOGIN</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <form onSubmit={Login} className="d-flex flex-column justify-content-center">
+                  <TextField
+                    className={classes.margin}
+                    id="input-with-icon-textfield"
+                    label="Email"
+                    name="Lemail"
                   />
-                </FormControl>
-                <Button type="submit" variant="contained" className="colorBoton">LogIn</Button>
-              </form>
-            </div>
-            <div className="modal-footer">
-              <Button color="secondary" data-dismiss="modal">Cerrar</Button>
-              <Button data-toggle="modal" data-target="#ModalRegistro" data-dismiss="modal">Registrarse</Button>
+                  <FormControl className={classes.margin}>
+                    <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                    <Input
+                      id="standard-adornment-password"
+                      type={values.showPassword ? 'text' : 'password'}
+                      value={values.password} name="Lpassword"
+                      onChange={handleChange('password')}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                          >
+                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                    />
+                  </FormControl>
+                  <Button type="submit" variant="contained" className="colorBoton">LogIn</Button>
+                </form>
+              </div>
+              <div className="modal-footer">
+                <Button color="secondary" data-dismiss="modal">Cerrar</Button>
+                <Button data-toggle="modal" data-target="#ModalRegistro" data-dismiss="modal">Registrarse</Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        : 
+        <span></span>}
       {/* MODAL BUSCADOR */}
       <div class="modal fade" id="Buscador" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-              <InputSearchAnt />
+            <InputSearchAnt />
           </div>
         </div>
       </div>
     </div>
   );
 }
-export default Menu;
+const mapStateToProps = (state) => ({ user: state.user })
+export default connect(mapStateToProps)(Menu);

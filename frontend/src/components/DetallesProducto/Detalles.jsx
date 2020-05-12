@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./detalle.css";
+import Menu from '../Menu/Menu';
 import { InputNumber } from "antd";
-import "antd/dist/antd.css";
 import { Button } from "antd";
 import Productos from "../Productos/Productos";
 
@@ -31,10 +31,11 @@ const Detalles = () => {
   useEffect(() => {
     ListarDetalles();
     ListarCategoria();
-  }, []);
+  }, [_id]);
 
   return (
     <React.Fragment>
+      <Menu />
       <div className="container-fluid">
         <div className="row">
           <ul className="flex-row d-flex detalle align-items-center justify-content-center">

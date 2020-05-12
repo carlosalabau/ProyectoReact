@@ -12,7 +12,7 @@ const Submenu = () => {
         <div className="container-fluid">
             <div className="row ">
                 <div className="owl-carousel owl-theme">
-                    <div><h4><img src={slide1} alt="..." /></h4></div>
+                    <div><h4><h1>HOLA</h1><img src={slide1} alt="..." /></h4></div>
                     <div><h4><img src={slide2} alt="..." /></h4></div>
                     <div><h4><img src={slide3} alt="..." /></h4></div>
                 </div>

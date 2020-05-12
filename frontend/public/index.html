@@ -65,12 +65,19 @@
     <script>
       window.onscroll = function() {
   let nav = document.getElementById('nav');
+ 
   if(window.scrollY > 900 ){
   nav.style.cssText = 'background-color: black';
   }
   if(window.scrollY < 900){
       nav.style.cssText = 'background-color: transparent';
   }
+  var URLactual = window.location.href;
+  let url = 'http://localhost:3001/'
+  if(URLactual != url){
+    nav.style.cssText = 'background-color: black';
+  }
+
 };
     </script>
   </body>

@@ -6,12 +6,15 @@ import oferta1 from "../../img/oferta1.jpg";
 import oferta2 from "../../img/oferta2.png";
 import oferta3 from "../../img/oferta3.png";
 import oferta4 from "../../img/oferta4.png";
-import  Submenu  from "../Menu/Submenu/Submenu";
+import Submenu from "../Menu/Submenu/Submenu";
 import Menu from '../Menu/Menu';
+import { Button, Carousel } from 'antd';
 
 const ProductosHome = () => {
+
   const [productos, setProductos] = useState([]);
   const [novedades, setNovedades] = useState([]);
+  const [categoria, setCategoria] = useState('carretera')
 
   const ListarProductos = () => {
     axios
@@ -26,6 +29,12 @@ const ProductosHome = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const ListarPorCategoria = async (event) => {
+    const cat = event.target.value;
+    setCategoria(cat);
+    console.log(cat)
+    await axios.get("http://localhost:3000/bicicletas/categoria/" + cat);
   };
   useEffect(() => {
     ListarProductos();
@@ -51,15 +60,25 @@ const ProductosHome = () => {
           ))}
         </div>
       </div>
-      <div className="contenedor d-flex">
-        <div className="col-lg-6 col-xl-6 col-md-6 ofertas">
-          <img src={oferta1} alt="" />
+      <div className="container-fluid offers">
+        <div className="row">
+          <div className="col-lg-6 col-xl-6 col-md-6 ofertas">
+            <img src={oferta1} alt="..." />
+          </div>
+          <div className="col-lg-6 col-xl-6 col-md-6 carrousel2">
+            <Carousel autoplay>
+              <div>
+                <h3><img src={oferta2} alt="..." /></h3>
+              </div>
+              <div>
+                <h3><img src={oferta3} alt="..."/></h3>
+              </div>
+              <div>
+                <h3><img src={oferta4} alt="..."/></h3>
+              </div>
+            </Carousel>
+          </div>
         </div>
-        {/* <div className="owl-carousel col-lg-6 col-xl-6 col-md-6 ofertas">
-                    <div className="item"><h4><img src={oferta2} alt=""/></h4></div>
-                    <div className="item"><h4><img src={oferta3} alt=""/></h4></div>
-                    <div className="item"><h4><img src={oferta4} alt=""/></h4></div>
-                </div> */}
       </div>
       <div className="container">
         <div className="row justify-content-center align-item-center">
@@ -69,15 +88,15 @@ const ProductosHome = () => {
               <span>NUEVOS PRODUCTOS</span>
             </h3>
             <ul className="d-flex flex-row justify-content-center filtro-categoria">
-              <li>Carretera</li>
-              <li>Montaña</li>
-              <li>Urbanas</li>
+              <li><Button className="btnCat" onClick={ListarPorCategoria} value="carretera">Carretera</Button></li>
+              <li><Button className="btnCat" onClick={ListarPorCategoria} value="montaña">Montaña</Button></li>
+              <li><Button className="btnCat" onClick={ListarPorCategoria} value="urbana">Urbanas</Button></li>
             </ul>
           </div>
         </div>
         <div className="row">
           {novedades
-            .filter((nov) => nov.categoria === "carretera")
+            .filter((nov) => nov.categoria === categoria)
             .slice(0, 3)
             .map((nov) => (
               <Productos key={nov._id} productos={nov} />

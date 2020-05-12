@@ -58,12 +58,13 @@
 .relacionados h3{
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
+    position: relative;
 }
 .relacionados h3::before{
     position: absolute;
-    bottom: -73px;
     width: 50px;
     height: 3px;
+    bottom: 0;
     content: "";
     background-color: #ffd80a;
 }

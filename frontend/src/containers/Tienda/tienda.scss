@@ -1,0 +1,39 @@
+@import '../../colors.scss';
+
+.tienda{
+    padding-top: 60px;
+}
+.tienda h6{
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    position: relative;
+}
+.tienda h6::before{
+        content: " ";
+        height: 3px;
+        background-color: $amarillo;
+        bottom: 0;
+        width: 50px;
+        position: absolute;
+}
+
+.makeStyles-root-1 {
+    width: 100% !important;
+}
+.marca{
+    font-size: 14px
+}
+.filtroProductos{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.filtroProduct{
+    height: 215px;
+}
+.filtroProduct:hover{
+    height: 280px;
+}
+.FiltroPadre{
+    height:215px
+}
