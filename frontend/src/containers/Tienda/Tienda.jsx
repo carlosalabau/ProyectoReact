@@ -7,6 +7,8 @@ import Slider from '@material-ui/core/Slider';
 import { Link } from 'react-router-dom';
 import Menu from '../../components/Menu/Menu'
 import { Button } from 'antd';
+import { addCart } from '../../redux/actions';
+import { connect } from "react-redux";
 import './tienda.scss';
 
 const useStyles = makeStyles({
@@ -19,7 +21,7 @@ function valuetext(value) {
     return `${value}€`;
 }
 
-const Tienda = () => {
+const Tienda = (props) => {
 
     const classes = useStyles();
     const [value, setValue] = React.useState([300, 4700]);
@@ -78,22 +80,22 @@ const Tienda = () => {
                         </div>
                     </div>
                     <div className="col-xl-9 col-lg-9 col-md-9 filtroProductos">
-                        {bicis.slice(0, 12).filter(price => price.precio > value[0] && price.precio < value[1]).map((productos) => (
+                        {bicis.slice(0, 12).filter(price => price.precio > value[0] && price.precio < value[1]).map((producto) => (
                             <div className="col-xl-3 col-lg-3 col-md-3 box-padre FiltroPadre">
                                 <div className="box-product filtroProduct">
-                                    <Link className="producto" key={productos._id} to={'/detalles/' + productos._id}>
+                                    <Link className="producto" key={producto._id} to={'/detalles/' + producto._id}>
                                         <div className="imagen-producto d-flex justify-content-center">
-                                            <img src={productos.imagen} alt="Producto" />
+                                            <img src={producto.imagen} alt="Producto" />
                                         </div>
-                                        <p className="categoria">{productos.categoria}</p>
+                                        <p className="categoria">{producto.categoria}</p>
                                         <div className="d-flex flex-row justify-content-between">
-                                            <span className="marca">{productos.marca}</span>
-                                            <span className="precio">{productos.precio}€</span>
+                                            <span className="marca">{producto.marca}</span>
+                                            <span className="precio">{producto.precio}€</span>
                                         </div>
+                                        </Link>
                                         <div className="btn-carrito">
-                                            <Button type="primary">Añadir al carrito</Button>
+                                            <Button type="primary" onClick={() => addCart(producto)}>Añadir al carrito</Button>
                                         </div>
-                                    </Link>
                                 </div>
                             </div>
                         ))}
@@ -103,4 +105,5 @@ const Tienda = () => {
         </ React.Fragment>
     )
 }
-export default Tienda;
+const mapStateToProps = (state) => ({cart:state.cart})
+export default connect(mapStateToProps)(Tienda);

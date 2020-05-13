@@ -1,8 +1,21 @@
 
-import { createStore } from "redux";
+import { applyMiddleware,compose, createStore } from "redux";
 import reducer from "./reducer";
+import { save, load } from "redux-localstorage-simple";
 
-const store = createStore(reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const createStoreWithMiddleware = applyMiddleware(
+    save(), // Saving done here
+)(createStore);
+
+const store = createStoreWithMiddleware(
+    reducer,
+    load({
+        preloadedState: {cart:[]}
+    }), // Loading done here
+    composeEnhancers(),
+);
 
 export default store;

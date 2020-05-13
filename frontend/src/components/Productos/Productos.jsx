@@ -1,28 +1,30 @@
 import React from 'react'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './productos.scss';
 import { Button } from 'antd';
+import { addCart } from '../../redux/actions';
+import { connect } from "react-redux";
 
- const Productos = ({productos}) => {
+const Productos = ({producto}) => {
     return (
         <div className="col-xl-4 col-lg-4 col-md-4 box-padre">
             <div className="box-product">
-                <Link className="producto" key={productos._id} to={'/detalles/' + productos._id}>
+                <Link className="producto" to={'/detalles/' + producto._id}>
                     <div className="imagen-producto d-flex justify-content-center">
-                        <img src={productos.imagen} alt="Producto" />   
+                        <img src={producto.imagen} alt="Producto" />
                     </div>
-                    <p className="categoria">{productos.categoria}</p>
+                    <p className="categoria">{producto.categoria}</p>
                     <div className="d-flex flex-row justify-content-between">
-                        <span className="marca">{productos.marca}</span>
-                        <span className="precio">{productos.precio}€</span>
-                    </div>
-                    <div className="btn-carrito">
-                    <Button type="primary">Añadir al carrito</Button>
+                        <span className="marca">{producto.marca}</span>
+                        <span className="precio">{producto.precio}€</span>
                     </div>
                 </Link>
+                <div className="btn-carrito">
+                    <Button type="primary" onClick={() => addCart(producto)}>Añadir al carrito</Button>
+                </div>
             </div>
         </div>
     )
 }
-
-export default Productos;
+const mapStateToProps = (state) => ({ cart: state.cart })
+export default connect(mapStateToProps)(Productos);

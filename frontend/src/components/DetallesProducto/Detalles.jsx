@@ -6,14 +6,21 @@ import Menu from '../Menu/Menu';
 import { InputNumber } from "antd";
 import { Button } from "antd";
 import Productos from "../Productos/Productos";
+import { addCart } from '../../redux/actions';
+import { connect } from "react-redux";
 
-function onChange(value) {
-  console.log("changed", value);
-}
 
 const Detalles = () => {
   const [producto, setProducto] = useState({});
   const [category, setCategory] = useState([]);
+  const [valor, setValor] = useState(1)
+
+  function onChange(value) {
+    console.log("changed", value);
+    setValor(value)
+    console.log(value);
+  }
+
   const { _id } = useParams();
 
   const ListarDetalles = async () => {
@@ -61,7 +68,7 @@ const Detalles = () => {
                 defaultValue={1}
                 onChange={onChange}
               />
-              <Button type="primary" className="boton">
+              <Button type="primary" className="boton" onClick={() => addCart(producto, valor)}>
                 Añadir al carrito <i className="fas fa-shopping-cart"></i>
               </Button>
             </div>
@@ -75,7 +82,7 @@ const Detalles = () => {
                 .filter((cat) => cat.categoria === producto.categoria)
                 .slice(0, 3)
                 .map((produc) => (
-                  <Productos key={produc._id} productos={produc} />
+                  <Productos key={produc._id} producto={produc} />
                 ))}
             </div>
           </div>
@@ -84,5 +91,5 @@ const Detalles = () => {
     </React.Fragment>
   );
 };
-
-export default Detalles;
+const mapStateToProps = (state) => ({ cart: state.cart })
+export default connect(mapStateToProps)(Detalles);

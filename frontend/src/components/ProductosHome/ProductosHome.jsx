@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import axios from "axios";
 import "./productosHome.css";
 import Productos from "../Productos/Productos";
@@ -9,6 +9,11 @@ import oferta4 from "../../img/oferta4.png";
 import Submenu from "../Menu/Submenu/Submenu";
 import Menu from '../Menu/Menu';
 import { Button, Carousel } from 'antd';
+import { Link } from "react-router-dom";
+
+
+
+
 
 const ProductosHome = () => {
 
@@ -42,7 +47,7 @@ const ProductosHome = () => {
   }, []);
 
   return (
-    <div>
+    <Fragment>
       <Menu />
       <Submenu />
       <div className="container">
@@ -56,7 +61,7 @@ const ProductosHome = () => {
         </div>
         <div className="row">
           {productos.slice(0, 6).map((produc) => (
-            <Productos key={produc._id} productos={produc} />
+            <Productos key={produc._id} producto={produc} />
           ))}
         </div>
       </div>
@@ -71,10 +76,10 @@ const ProductosHome = () => {
                 <h3><img src={oferta2} alt="..." /></h3>
               </div>
               <div>
-                <h3><img src={oferta3} alt="..."/></h3>
+                <h3><img src={oferta3} alt="..." /></h3>
               </div>
               <div>
-                <h3><img src={oferta4} alt="..."/></h3>
+                <h3><img src={oferta4} alt="..." /></h3>
               </div>
             </Carousel>
           </div>
@@ -96,14 +101,13 @@ const ProductosHome = () => {
         </div>
         <div className="row">
           {novedades
-            .filter((nov) => nov.categoria === categoria)
-            .slice(0, 3)
+            .filter((nov) => nov.categoria === categoria).slice(0,3)
             .map((nov) => (
-              <Productos key={nov._id} productos={nov} />
+              <Productos key={nov._id} producto={nov} />
             ))}
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 export default ProductosHome;
