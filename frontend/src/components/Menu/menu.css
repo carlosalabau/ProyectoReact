@@ -101,3 +101,6 @@
   font-size: 60px;
   color: #eee;
 }
+.MuiSlider-root{
+  width: 85% !important;
+}

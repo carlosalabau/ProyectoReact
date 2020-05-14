@@ -15,6 +15,12 @@ const reducer = (state = {cart:[]}, action) => {
                         ...state,
                         cart: []
                     }
+                    case 'LOGOUT':
+                        return{
+                            ...state,
+                            user: undefined,
+                            cart: []
+                        }
                     default:
                         return state;
     }

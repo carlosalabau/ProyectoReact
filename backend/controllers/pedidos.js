@@ -5,10 +5,13 @@ const PedidosController = {
         try {
             req.body.estado = 'pendiente';
             req.body.userId = req.user._id;
-            const nuevo = await PedidosModel.create(req.body);
+            const nuevo = await PedidosModel.create({
+                ...req.body
+            });
             res.send(nuevo)
         } catch (error) {
             res.status(500).send('Ha ocurrido un error al añadir nuevo pedido')
+            console.log(error)
         }
     },
     async Listar(req,res){

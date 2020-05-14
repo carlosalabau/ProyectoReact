@@ -143,7 +143,7 @@ const ModalRegistro = () => {
                     </div>
                     <div className="modal-footer">
                         <Button color="secondary" data-dismiss="modal">Cerrar</Button>
-                        <Button data-toggle="modal" data-target="#ModalLogin" data-dismiss="modal">Login</Button>            </div>
+                        <Button data-toggle="modal" data-target="#Login" data-dismiss="modal">Login</Button>            </div>
                 </div>
             </div>
         </div>

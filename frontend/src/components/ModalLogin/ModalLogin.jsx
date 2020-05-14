@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
@@ -53,9 +53,10 @@ const ModalLogin = (props) => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+    const [mostrarModal, setMostrarModal] = useState(true)
+
     const Login = (event) => {
         event.preventDefault();
-        console.log('LOGIN')
         const user = {
             email: event.target.Lemail.value,
             password: event.target.Lpassword.value
@@ -64,17 +65,16 @@ const ModalLogin = (props) => {
             .then(res => {
                 notification.success({ message: 'Usuario logueado con éxito' });
                 setTimeout(() => {
+                    setMostrarModal(false)
                     history.push('/')
                 }, 2000)
-                console.log(user)
             })
             .catch(console.error)
     }
-
     return (
         <React.Fragment>
-            {!props.user ?
-                <div className="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            {mostrarModal &&
+                <div className="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="ModalLogin" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -121,8 +121,7 @@ const ModalLogin = (props) => {
                         </div>
                     </div>
                 </div>
-                :
-                <span></span>}
+            }
         </React.Fragment>
     )
 }

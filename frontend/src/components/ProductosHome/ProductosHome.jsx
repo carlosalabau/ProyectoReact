@@ -44,7 +44,7 @@ const ProductosHome = () => {
   return (
     <Fragment>
       <Menu />
-      <Carousel autoplay>
+       <Carousel autoplay>
         <div>
           <h3>
             <p className="tit1">Wind killer</p>

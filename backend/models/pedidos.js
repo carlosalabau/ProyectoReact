@@ -6,12 +6,9 @@ const pedidosSchema = new mongoose.Schema({
         type: String,
         required: [true, 'El campo estado es obligatorio']
     },
-    fechaEntrega: {
-        type: Date,
-    },
     total:{
         type: Number,
-        required: true
+       
     },
     userId: {
         type: ObjectId,

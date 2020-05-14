@@ -11,6 +11,12 @@ import { notification } from 'antd';
         payload: res.data.user //La respuesta del backend me devuelve user y lo guardo en el payload
     });
 }
+export const logout = async() =>{
+    localStorage.removeItem('authToken');
+    store.dispatch({
+        type: 'LOGOUT',
+    })
+}
 export const addCart = async(producto, cant) => {
     console.log('ACTION', cant)
     notification.success({ message: 'Producto añadido al carrito' });
@@ -19,9 +25,8 @@ export const addCart = async(producto, cant) => {
         payload:{...producto, nCantidad: cant, total: producto.precio*cant}
     })
 }
-export const clearCart = async(cart) =>{
+export const clearCart = async() =>{
     store.dispatch({
         type: 'CLEAR_CART',
-        payload: cart
     })
 }
