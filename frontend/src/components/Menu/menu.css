@@ -81,3 +81,23 @@
   background-color: rgb(251, 213, 10) !important;
   
 }
+.empty{
+  display: none;
+  position: absolute;
+  background: white;
+  padding: 50px;
+  right: 20px;
+  margin-top: 25px;
+  box-shadow:  0 0 0 2px rgb(247, 244, 244);
+}
+.carEmpty:hover .empty{
+   display: block;
+}
+.empty p{
+  display: flex;
+  justify-content: center;
+}
+.empty p i{
+  font-size: 60px;
+  color: #eee;
+}

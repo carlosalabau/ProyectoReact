@@ -94,7 +94,7 @@ const Tienda = (props) => {
                                         </div>
                                         </Link>
                                         <div className="btn-carrito">
-                                            <Button type="primary" onClick={() => addCart(producto)}>Añadir al carrito</Button>
+                                            <Button type="primary" onClick={() => addCart(producto, 1)}>Añadir al carrito</Button>
                                         </div>
                                 </div>
                             </div>

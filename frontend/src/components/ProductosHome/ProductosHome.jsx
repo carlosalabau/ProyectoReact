@@ -1,12 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
 import axios from "axios";
-import "./productosHome.css";
+import "./productosHome.scss";
 import Productos from "../Productos/Productos";
-import oferta1 from "../../img/oferta1.jpg";
-import oferta2 from "../../img/oferta2.png";
-import oferta3 from "../../img/oferta3.png";
-import oferta4 from "../../img/oferta4.png";
-import Submenu from "../Menu/Submenu/Submenu";
 import Menu from '../Menu/Menu';
 import { Button, Carousel } from 'antd';
 import { Link } from "react-router-dom";
@@ -49,7 +44,32 @@ const ProductosHome = () => {
   return (
     <Fragment>
       <Menu />
-      <Submenu />
+      <Carousel autoplay>
+        <div>
+          <h3>
+            <p className="tit1">Wind killer</p>
+            <h1 className="tit2">LIGHT<br/> AND FASTER</h1>
+            <Link to="/tienda"><button type="button" className="btn btn-tit">Tienda</button></Link>
+            <img src='img/slide1.jpg' alt="..." /></h3>
+        </div>
+        <div>
+          <h3>
+            <p className="tit1">Ride in style</p>
+            <h1 className="tit2">BIKE LIGHT<br/> COMPARISON</h1>
+            <Link to="/tienda"><button type="button" className="btn btn-tit">Tienda</button></Link>
+            <img src='img/slide2.jpg' alt="..." />
+          </h3>
+        </div>
+        <div>
+          <h3>
+            <p className="tit1">Save up to 40%</p>
+            <h1 className="tit2">BIG BIKE <br/> FLASH SALE</h1>
+            <Link to="/tienda"><button type="button" className="btn btn-tit">Tienda</button></Link>
+            <img src='img/slide3.jpg' alt="..." />
+            
+          </h3>
+        </div>
+      </Carousel>
       <div className="container">
         <div className="row justify-content-center align-item-center">
           <div className="titulo-productos d-flex flex-column">
@@ -68,18 +88,18 @@ const ProductosHome = () => {
       <div className="container-fluid offers">
         <div className="row">
           <div className="col-lg-6 col-xl-6 col-md-6 ofertas">
-            <img src={oferta1} alt="..." />
+            <img src='img/oferta1.jpg' alt="..." />
           </div>
           <div className="col-lg-6 col-xl-6 col-md-6 carrousel2">
             <Carousel autoplay>
               <div>
-                <h3><img src={oferta2} alt="..." /></h3>
+                <h3><img src='img/oferta2.png' alt="..." /></h3>
               </div>
               <div>
-                <h3><img src={oferta3} alt="..." /></h3>
+                <h3><img src='img/oferta3.png' alt="..." /></h3>
               </div>
               <div>
-                <h3><img src={oferta4} alt="..." /></h3>
+                <h3><img src='img/oferta4.png' alt="..." /></h3>
               </div>
             </Carousel>
           </div>
@@ -101,7 +121,7 @@ const ProductosHome = () => {
         </div>
         <div className="row">
           {novedades
-            .filter((nov) => nov.categoria === categoria).slice(0,3)
+            .filter((nov) => nov.categoria === categoria).slice(0, 3)
             .map((nov) => (
               <Productos key={nov._id} producto={nov} />
             ))}

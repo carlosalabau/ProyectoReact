@@ -9,7 +9,7 @@ const pedidosSchema = new mongoose.Schema({
     fechaEntrega: {
         type: Date,
     },
-    cantidad:{
+    total:{
         type: Number,
         required: true
     },

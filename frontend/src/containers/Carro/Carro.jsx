@@ -2,18 +2,11 @@ import React, { useEffect } from 'react'
 import { Button } from 'antd';
 import Menu from '../../components/Menu/Menu'
 import { connect } from "react-redux";
-
+import { clearCart } from '../../redux/actions'
+import { Link } from 'react-router-dom';
 
 const Carro = (props) => {
-    console.log(props.cart)
 
-    useEffect(() => {
-        {
-            props.cart.forEach(element =>
-                console.log(element[0]))
-        }
-
-    }, [])
     return (
         <div>
             <Menu />
@@ -34,19 +27,28 @@ const Carro = (props) => {
                             <td>Cantidad</td>
                             <td>Total</td>
                         </tr>
-                        {/* {props.cart.map(product =>
+                        {props.cart.map(product =>
                             <tr>
-                                <td>{product[0].marca}</td>
-                                <td>{product[0].precio}</td>
-                                <td>{product[1].cant}</td>
-                                <td>{product[0].precio * product[0].cantidad}</td>
+                                <td>{product.marca}</td>
+                                <td>{product.precio}</td>
+                                <td>{product.nCantidad}</td>
+                                <td>{product.precio}€</td>
                             </tr>
-                        )} */}
+                        )}
+                        {props.cart.length > 0 ?
+                            <tr>
+                                <td><Button type="primary" danger onClick={() => clearCart()}>Vaciar carrito</Button></td>
+                            </tr>
+                            :
+                            <tr>
+                                <td><Link to="/tienda"><Button type="primary">Volver a la tienda</Button></Link></td>
+                            </tr>
+                        }
                     </table>
                     <div className="totales">
                         <h1>Importe total</h1>
-                        <p>Subtotal: </p>
-                        <p>Total</p>
+                        <p>Subtotal: {(props.cart.reduce((pre, cur) => pre + cur.total, 0)).toFixed(2)}€</p>
+                        <p>Total: {(props.cart.reduce((pre, cur) => pre + cur.total, 0)).toFixed(2)}€</p>
                         <p><Button type="primary">Finalizar pedido</Button></p>
                     </div>
                 </div>

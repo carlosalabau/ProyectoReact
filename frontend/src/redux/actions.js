@@ -16,7 +16,7 @@ export const addCart = async(producto, cant) => {
     notification.success({ message: 'Producto añadido al carrito' });
     store.dispatch({
         type: 'ADD_CART',
-        payload:[{productos: producto},{nCantidad: cant}]
+        payload:{...producto, nCantidad: cant, total: producto.precio*cant}
     })
 }
 export const clearCart = async(cart) =>{

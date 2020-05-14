@@ -57,19 +57,19 @@ const ModalLogin = (props) => {
         event.preventDefault();
         console.log('LOGIN')
         const user = {
-          email: event.target.Lemail.value,
-          password: event.target.Lpassword.value
+            email: event.target.Lemail.value,
+            password: event.target.Lpassword.value
         }
         login(user)
-          .then(res => {
-            notification.success({ message: 'Usuario logueado con éxito' });
-            setTimeout(() => {
-              history.push('/')
-            }, 2000)
-            console.log(user)
-          })
-          .catch(console.error)
-      }
+            .then(res => {
+                notification.success({ message: 'Usuario logueado con éxito' });
+                setTimeout(() => {
+                    history.push('/')
+                }, 2000)
+                console.log(user)
+            })
+            .catch(console.error)
+    }
 
     return (
         <React.Fragment>
