@@ -8,7 +8,6 @@ const pedidosSchema = new mongoose.Schema({
     },
     total:{
         type: Number,
-       
     },
     userId: {
         type: ObjectId,

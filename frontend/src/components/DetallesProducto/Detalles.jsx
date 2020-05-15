@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import "./detalle.css";
+import "./detalle.scss";
 import Menu from '../Menu/Menu';
 import { InputNumber } from "antd";
 import { Button } from "antd";
@@ -20,7 +20,7 @@ const Detalles = () => {
     setValor(value)
     console.log(value);
   }
-
+  
   const { _id } = useParams();
 
   const ListarDetalles = async () => {
@@ -28,13 +28,14 @@ const Detalles = () => {
       "http://localhost:3000/bicicletas/detalles/" + _id
     );
     console.log(res.data);
-    setProducto(res.data);
+    setProducto(res.data);    
   };
   const ListarCategoria = async () => {
     const res = await axios.get("http://localhost:3000/bicicletas/");
     console.log(res);
     setCategory(res.data);
   };
+  console.log(producto.miniImagen)
   useEffect(() => {
     ListarDetalles();
     ListarCategoria();
@@ -54,6 +55,11 @@ const Detalles = () => {
         <div className="row detalleProducto flex-row justify-content-center align-items-center">
           <div className="imagen col-xl-6 col-lg-6 col-md-6">
             <img src={producto.imagen} alt="" />
+            <div className="miniImagen">
+              {producto.miniImagen?.map(path => (
+                <img src={path} alt="Miniatura" key={path} />
+              ))}
+            </div>
           </div>
           <div className="info col-xl-6 col-lg-6 col-md-6">
             <h3 className="pb-3">{producto.marca}</h3>

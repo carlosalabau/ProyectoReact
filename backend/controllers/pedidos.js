@@ -1,4 +1,5 @@
 const PedidosModel = require('../models/pedidos');
+const {actualizarStock} = require('../services/pedidoService');
 
 const PedidosController = {
     async Agregar(req,res){

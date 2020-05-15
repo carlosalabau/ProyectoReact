@@ -1,3 +1,4 @@
+@import '../../colors.scss';
 .modal-open{
     overflow: visible;
     padding: 0 !important;
@@ -67,4 +68,20 @@
     bottom: 0;
     content: "";
     background-color: #ffd80a;
+}
+.miniImagen{
+    display: flex;
+    justify-content: center;
+    margin-top: -20px;
+}
+.miniImagen img{
+    width: 20%;
+    margin: 0 10px;
+    padding: 10px;
+    transition: transform .2s;
+}
+.miniImagen img:hover{
+        border:1px solid $amarillo;
+        transform: scale(1.4); 
+
 }

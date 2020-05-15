@@ -44,29 +44,30 @@ const ProductosHome = () => {
   return (
     <Fragment>
       <Menu />
-       <Carousel autoplay>
-        <div>
+      <Carousel autoplay>
+        <div className="imagenCarousel">
           <h3>
-            <p className="tit1">Wind killer</p>
-            <h1 className="tit2">LIGHT<br/> AND FASTER</h1>
-            <Link to="/tienda"><button type="button" className="btn btn-tit">Tienda</button></Link>
-            <img src='img/slide1.jpg' alt="..." /></h3>
+              <p className="tit1">Wind killer</p>
+              <h1 className="tit2">LIGHT<br /> AND FASTER</h1>
+              <Link to="/tienda"><button type="button" className="btn btn-tit">Tienda</button></Link>
+              <img src='img/slide1.jpg' alt="..." />
+          </h3>
         </div>
-        <div>
+        <div className="imagenCarousel">
           <h3>
             <p className="tit1">Ride in style</p>
-            <h1 className="tit2">BIKE LIGHT<br/> COMPARISON</h1>
+            <h1 className="tit2">BIKE LIGHT<br /> COMPARISON</h1>
             <Link to="/tienda"><button type="button" className="btn btn-tit">Tienda</button></Link>
             <img src='img/slide2.jpg' alt="..." />
           </h3>
         </div>
-        <div>
+        <div className="imagenCarousel">
           <h3>
             <p className="tit1">Save up to 40%</p>
-            <h1 className="tit2">BIG BIKE <br/> FLASH SALE</h1>
+            <h1 className="tit2">BIG BIKE <br /> FLASH SALE</h1>
             <Link to="/tienda"><button type="button" className="btn btn-tit">Tienda</button></Link>
             <img src='img/slide3.jpg' alt="..." />
-            
+
           </h3>
         </div>
       </Carousel>

@@ -18,7 +18,6 @@ export const logout = async() =>{
     })
 }
 export const addCart = async(producto, cant) => {
-    console.log('ACTION', cant)
     notification.success({ message: 'Producto añadido al carrito' });
     store.dispatch({
         type: 'ADD_CART',

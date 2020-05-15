@@ -53,15 +53,6 @@ const BiciController = {
         } catch (error) {
             res.status(500).send('Ha ocurrido un error al crear una bicicleta')
         }
-    },
-    async Actualizar(req,res){
-        try {
-            const actualizar = await BiciModel.findByIdAndUpdate(req.params._id, req.body, {new: true});
-            res.send(actualizar)
-        } catch (error) {
-            res.status(500).send('Ha ocurrido un error al actualizar la bicicleta');
-            console.log(error)
-        }
     }
 }
 module.exports = BiciController;

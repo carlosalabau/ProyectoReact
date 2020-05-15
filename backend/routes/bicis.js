@@ -7,7 +7,6 @@ router.get('/detalles/:_id', BiciController.Detalles);
 router.get('/novedades', BiciController.Novedades);
 router.get('/categoria/:categoria', BiciController.PorCategoria);
 router.post('/agregar', BiciController.Nueva);
-router.put('/actualizar/:_id', BiciController.Actualizar);
 router.get('/marca/:marca', BiciController.PorNombre);
 router.get('/', BiciController.Listar);
 

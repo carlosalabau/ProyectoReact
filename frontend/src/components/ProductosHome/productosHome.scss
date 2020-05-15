@@ -32,9 +32,6 @@
     height: auto;
     margin-top: 100px;
 }
-img:hover{
-    all: unset
-}
 .ofertas{
     margin: 0;
     padding: 0;
@@ -101,20 +98,23 @@ img:hover{
 .ant-carousel .slick-dots{
     display: none !important;
 }
-.tit1{
+.imagenCarousel{
+    position: relative
+}
+.tit1{  
     position: absolute;
     font-family: $fuenteTitulo;
     color: $amarillo;
     font-size:2em;
-    margin-left: -420px;
+    margin-left: -24%;
     width: 300px;
     margin-top: -105px;
     text-align: left;
 }
 .tit2{
-    color: white;
     position: absolute;
-    margin-left: -340px;
+    color: white;
+    margin-left: -20%;
     font-size: 4rem;
     width: 450px;
     text-align: left;
@@ -126,8 +126,38 @@ img:hover{
     position: absolute;
     background-color: $amarillo;
     color: #242B38;
-    margin-left: 400px;
-    margin-top: 100px;
+    margin-left: 19%;
+    margin-top: 80px;
     width: 120px;
     font-size: 20px;
 }
+@-moz-document url-prefix() {
+    .btn-tit{
+        position: absolute;
+        background-color: $amarillo;
+        color: #242B38;
+        margin-left: 23%;
+        margin-top: 100px;
+        width: 120px;
+        font-size: 20px;
+    }
+    .tit1{  
+        position: absolute;
+        font-family: $fuenteTitulo;
+        color: $amarillo;
+        font-size:2em;
+        margin-left: -38%;
+        width: 300px;
+        margin-top: -105px;
+        text-align: left;
+    }
+    .tit2{
+        position: absolute;
+        color: white;
+        margin-left: -30%;
+        margin-top: 70px;
+        font-size: 4rem;
+        width: 450px;
+        text-align: left;
+    }
+  }

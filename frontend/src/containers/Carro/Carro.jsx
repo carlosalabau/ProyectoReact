@@ -6,15 +6,16 @@ import { clearCart } from '../../redux/actions'
 import { Link } from 'react-router-dom';
 import './carro.scss';
 import Axios from 'axios';
+import { useEffect } from 'react';
 
 const Carro = (props) => {
 
     const token = localStorage.getItem('authToken')
-    console.log(token)
     const [mostrar, setMostrar] = useState(true)
+
     const finalizarPedido = async () => {
-        Axios.post('http://localhost:3000/pedidos/agregar',
-            { productosId: props.cart.map(producto => producto._id), total: props.cart.reduce((pre, cur) => pre + cur.total, 0) },
+        await Axios.post('http://localhost:3000/pedidos/agregar',
+            {productosId: props.cart.map(producto => producto._id), total: props.cart.reduce((pre, cur) => pre + cur.total, 0) },
             {
                 headers: {
                     Authorization: token

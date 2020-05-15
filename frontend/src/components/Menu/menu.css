@@ -25,6 +25,10 @@
     padding: 23px 10px;
     font-size: 20px;
   }
+  ul li:hover{
+    color: #ffd80a;
+    cursor: pointer;
+}
   .menu ul a{
     color: white;
     text-decoration: none;
