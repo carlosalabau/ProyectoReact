@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
@@ -9,6 +9,7 @@ import Menu from '../../components/Menu/Menu'
 import { Button } from 'antd';
 import { addCart } from '../../redux/actions';
 import { connect } from "react-redux";
+import Productos from '../../components/Productos/Productos'
 import './tienda.scss';
 
 const useStyles = makeStyles({
@@ -23,6 +24,15 @@ function valuetext(value) {
 
 const Tienda = (props) => {
 
+    const [categoria, setCategoria] = useState('')
+
+    const ListarPorCategoria = async (event) => {
+        const cat = event.target.value;
+        setCategoria(cat);
+        console.log(cat)
+        await axios.get("http://localhost:3000/bicicletas/categoria/" + cat);
+      };
+
     const classes = useStyles();
     const [value, setValue] = React.useState([300, 4700]);
 
@@ -33,9 +43,10 @@ const Tienda = (props) => {
     const [bicis, setBicis] = useState([]);
 
     const MostrarBicis = async () => {
-        const bicicletas = await Axios.get('http://localhost:3000/bicicletas/');
+        const bicicletas = await axios.get('http://localhost:3000/bicicletas/');
         setBicis(bicicletas.data);
         console.log(bicicletas.data)
+        setCategoria()
     }
     useEffect(() => {
         MostrarBicis();
@@ -57,9 +68,10 @@ const Tienda = (props) => {
                         <div className="filtroCat">
                             <h6>CATEGORIAS</h6>
                             <ul>
-                                <li>Montaña</li>
-                                <li>Carretera</li>
-                                <li>Urbano</li>
+                                <li><Button className="btnCat" onClick={ListarPorCategoria} value="carretera">Carretera</Button></li>
+                                <li><Button className="btnCat" onClick={ListarPorCategoria} value="montaña">Montaña</Button></li>
+                                <li><Button className="btnCat" onClick={ListarPorCategoria} value="urbana">Urbanas</Button></li>
+                                <li><Button className="btnCat" onClick={MostrarBicis}>Todas</Button></li>
                             </ul>
                         </div>
                         <div className="filtroPrecio">
@@ -80,7 +92,8 @@ const Tienda = (props) => {
                         </div>
                     </div>
                     <div className="col-xl-9 col-lg-9 col-md-9 filtroProductos">
-                        {bicis.slice(0, 12).filter(price => price.precio > value[0] && price.precio < value[1]).map((producto) => (
+                        {!categoria ?
+                        bicis.slice(0, 12).filter(price => price.precio > value[0] && price.precio < value[1]).map((producto) => (
                             <div className="col-xl-3 col-lg-3 col-md-3 box-padre FiltroPadre">
                                 <div className="box-product filtroProduct">
                                     <Link className="producto" key={producto._id} to={'/detalles/' + producto._id}>
@@ -92,18 +105,24 @@ const Tienda = (props) => {
                                             <span className="marca">{producto.marca}</span>
                                             <span className="precio">{producto.precio}€</span>
                                         </div>
-                                        </Link>
-                                        <div className="btn-carrito">
-                                            <Button type="primary" onClick={() => addCart(producto, 1)}>Añadir al carrito</Button>
-                                        </div>
+                                    </Link>
+                                    <div className="btn-carrito">
+                                        <Button type="primary" onClick={() => addCart(producto, 1)}>Añadir al carrito</Button>
+                                    </div>
                                 </div>
                             </div>
-                        ))}
+                        ))
+                        :
+                        bicis.filter((nov) => nov.categoria === categoria).slice(0, 3)
+                            .map((nov) => (
+                              <Productos key={nov._id} producto={nov} />
+                            ))
+                     }
                     </div>
                 </div>
             </div>
         </ React.Fragment>
     )
 }
-const mapStateToProps = (state) => ({cart:state.cart})
+const mapStateToProps = (state) => ({ cart: state.cart })
 export default connect(mapStateToProps)(Tienda);
