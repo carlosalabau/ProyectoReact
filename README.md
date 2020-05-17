@@ -17,3 +17,9 @@ Para poder tener el proyecto funcionando en tu PC necesitas realizar lo siguient
 1. Abrir consola y dirigirse a la carpeta backend, alli ejecutar el comando "npm install" para instalar todos los modulos necesarios.
 Cuando finalize ejecuta el comando "npm start" para arrancar el servidor.
 2. Dirigirte a la carpeta fronted y ejecutar el comando "npm install" y "npm start". Te dira que el puerto esta usado, para cambiarlo presiona la "Y".
+
+### Vista previa
+Esto es lo que veras si has seguido todos los pasos
+![Screenshot](assets/portada1.png)
+![Screenshot](assets/portada2.png)
+![Screenshot](assets/portada3.png)
