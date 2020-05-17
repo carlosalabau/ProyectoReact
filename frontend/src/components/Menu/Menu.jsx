@@ -14,7 +14,7 @@ const Menu = (props) => {
     logout()
     notification.success({ message: 'Usuario desconectado con éxito' });
     setTimeout( ()=>{
-      history.go('/')
+      history.push('/')
     }, 1000)
   }
 

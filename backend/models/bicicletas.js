@@ -11,12 +11,12 @@ const biciSchema = new mongoose.Schema({
         required: [true, 'El campo precio es requerido']
     },
     cantidad: Number,
+    vendidas: Number,
     miniImagen: [String],
     descripcion: String,
     imagen: String,
     categoria: String,
     esNovedad: Boolean,
-    proximaEntrada: Date,
     pedidosId: {
         type: [ObjectId],
         ref: 'Pedidos'

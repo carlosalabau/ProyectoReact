@@ -3,18 +3,14 @@ import axios from "axios";
 import "./productosHome.scss";
 import Productos from "../Productos/Productos";
 import Menu from '../Menu/Menu';
-import { Button, Carousel } from 'antd';
+import { Carousel } from 'antd';
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-
-
-
-
-const ProductosHome = () => {
+const ProductosHome = (props) => {
 
   const [productos, setProductos] = useState([]);
-  const [novedades, setNovedades] = useState([]);
-  const [categoria, setCategoria] = useState('carretera')
+  const [orden, setOrden] = useState([])
 
   const ListarProductos = () => {
     axios
@@ -22,23 +18,14 @@ const ProductosHome = () => {
       .then((res) => setProductos(res.data))
       .catch(console.error);
   };
-  const ListarNovedades = async () => {
-    try {
-      const novedad = await axios.get("http://localhost:3000/bicicletas");
-      setNovedades(novedad.data);
-    } catch (error) {
-      console.log(error);
-    }
+  const ordenarProductos = async () => {
+    const res = await axios.get("http://localhost:3000/bicicletas");
+    setOrden(res.data.sort((a, b) => (a.vendidas < b.vendidas ? 1 : a.vendidas > b.vendidas ? -1 : 0)));
   };
-  const ListarPorCategoria = async (event) => {
-    const cat = event.target.value;
-    setCategoria(cat);
-    console.log(cat)
-    await axios.get("http://localhost:3000/bicicletas/categoria/" + cat);
-  };
+
   useEffect(() => {
     ListarProductos();
-    ListarNovedades();
+    ordenarProductos();
   }, []);
 
   return (
@@ -74,7 +61,7 @@ const ProductosHome = () => {
       <div className="container">
         <div className="row justify-content-center align-item-center">
           <div className="titulo-productos d-flex flex-column">
-            <h6 className="d-flex justify-content-center">Más Vendidos</h6>
+            <h6 className="d-flex justify-content-center">Pasea con estilo</h6>
             <h3 className="d-flex justify-content-center">
               <span>PRODUCTOS DESTACADOS</span>
             </h3>
@@ -82,7 +69,7 @@ const ProductosHome = () => {
         </div>
         <div className="row">
           {productos.slice(0, 6).map((produc) => (
-            <Productos key={produc._id} producto={produc} />
+            <Productos key={produc._id} producto={produc} props={props}/>
           ))}
         </div>
       </div>
@@ -109,21 +96,21 @@ const ProductosHome = () => {
       <div className="container">
         <div className="row justify-content-center align-item-center">
           <div className="titulo-productos d-flex flex-column">
-            <h6 className="d-flex justify-content-center">Pasea con estilo</h6>
+            <h6 className="d-flex justify-content-center">Más vendidas</h6>
             <h3 className="d-flex justify-content-center">
-              <span>NUEVOS PRODUCTOS</span>
+              <span>PRODUCTOS DESTACADOS</span>
             </h3>
-            <ul className="d-flex flex-row justify-content-center filtro-categoria">
+           {/*  <ul className="d-flex flex-row justify-content-center filtro-categoria">
               <li><Button className="btnCat" onClick={ListarPorCategoria} value="carretera">Carretera</Button></li>
               <li><Button className="btnCat" onClick={ListarPorCategoria} value="montaña">Montaña</Button></li>
               <li><Button className="btnCat" onClick={ListarPorCategoria} value="urbana">Urbanas</Button></li>
-            </ul>
+            </ul> */}
           </div>
         </div>
         <div className="row">
-          {novedades
-            .filter((nov) => nov.categoria === categoria).slice(0, 3)
-            .map((nov) => (
+          {console.log(orden.map(prod=> prod.vendidas))}
+          {orden.slice(0,3)
+            .map(nov =>(
               <Productos key={nov._id} producto={nov} />
             ))}
         </div>
@@ -131,4 +118,5 @@ const ProductosHome = () => {
     </Fragment>
   );
 };
-export default ProductosHome;
+const mapStateToProps = (state) => ({ user: state.user })
+export default connect(mapStateToProps)(ProductosHome);

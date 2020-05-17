@@ -6,7 +6,6 @@ import { clearCart } from '../../redux/actions'
 import { Link } from 'react-router-dom';
 import './carro.scss';
 import Axios from 'axios';
-import { useEffect } from 'react';
 
 const Carro = (props) => {
 
@@ -15,7 +14,7 @@ const Carro = (props) => {
 
     const finalizarPedido = async () => {
         await Axios.post('http://localhost:3000/pedidos/agregar',
-            {productosId: props.cart.map(producto => producto._id), total: props.cart.reduce((pre, cur) => pre + cur.total, 0) },
+            { productosId: props.cart.map(producto => producto._id), total: props.cart.reduce((pre, cur) => pre + cur.total, 0) },
             {
                 headers: {
                     Authorization: token
@@ -41,7 +40,7 @@ const Carro = (props) => {
                 {mostrar ?
                     <div className="row filaCart" >
                         {props.cart.length > 0 &&
-                            <table className="col-xl-8 col-lg-8 col-md-8">
+                            <table className="col-xl-8 col-lg-8 col-md-8 compras">
                                 <tr>
                                     <td>Producto</td>
                                     <td>Precio</td>
@@ -56,26 +55,31 @@ const Carro = (props) => {
                                         <td>{product.precio}€</td>
                                     </tr>
                                 )}
+                                {props.cart.length > 0 &&
+                                    <tr>
+                                        <td>
+                                            <Button type="primary" danger onClick={() => clearCart()}>Vaciar carrito</Button>
+                                        </td>
+                                    </tr>
+                                }
                             </table>
                         }
-                        {props.cart.length > 0 &&
+                        {props.cart.length > 0 ?
                             <div className="totales">
                                 <h1>Importe total</h1>
                                 <p>Subtotal: {(props.cart.reduce((pre, cur) => pre + cur.total, 0)).toFixed(2)}€</p>
                                 <p>Total: {(props.cart.reduce((pre, cur) => pre + cur.total, 0)).toFixed(2)}€</p>
                                 <p><Button type="primary" onClick={() => finalizarPedido()}>Finalizar pedido</Button></p>
                             </div>
-                        }
-                        {props.cart.length > 0 ?
-                            <div className="btnCarrito">
-                                <Button type="primary" danger onClick={() => clearCart()}>Vaciar carrito</Button>
-                            </div>
                             :
-                            <div className="cartVacio">
-                                <p>Tu carrito esta vacio</p>
-                                <Link to="/tienda"><Button type="primary">Volver a la tienda</Button></Link>
-                            </div>
+                            <tr>
+                                    <td className="carritoVacio">
+                                    <p>Tu carrito esta vacio</p>
+                                    <Link to="/tienda"><Button type="primary">Volver a la tienda</Button></Link>
+                                    </td>
+                                </tr> 
                         }
+
                     </div>
                     :
                     `Gracias ${props.user.nombre} por realizar el pedido. En breve lo tendras en tu domicilio.`

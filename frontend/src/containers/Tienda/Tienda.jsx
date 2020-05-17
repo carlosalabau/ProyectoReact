@@ -22,7 +22,7 @@ function valuetext(value) {
     return `${value}€`;
 }
 
-const Tienda = (props) => {
+const Tienda = () => {
 
     const [categoria, setCategoria] = useState('')
 
@@ -106,14 +106,14 @@ const Tienda = (props) => {
                                             <span className="precio">{producto.precio}€</span>
                                         </div>
                                     </Link>
-                                    <div className="btn-carrito">
-                                        <Button type="primary" onClick={() => addCart(producto, 1)}>Añadir al carrito</Button>
+                                    <div className="btn-carrito-tienda">
+                                        <Button onClick={() => addCart(producto, 1)}>Añadir al carrito</Button>
                                     </div>
                                 </div>
                             </div>
                         ))
                         :
-                        bicis.filter((nov) => nov.categoria === categoria).slice(0, 3)
+                        bicis.filter((nov) => nov.categoria === categoria)
                             .map((nov) => (
                               <Productos key={nov._id} producto={nov} />
                             ))

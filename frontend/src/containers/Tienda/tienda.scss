@@ -21,7 +21,8 @@
     width: 100% !important;
 }
 .marca{
-    font-size: 14px
+    font-size: 14px;
+    height: 30px;
 }
 .filtroProductos{
     display: flex;
@@ -41,4 +42,14 @@
     list-style: none;
     margin: 0;
     padding: 0;
+}
+.btn-carrito-tienda button{
+    margin-top: 40px;
+    background-color: black;
+    color:white !important
+}
+.btn-carrito-tienda button:hover{
+    background-color: $amarillo;
+    color: black !important;
+    border-color: $amarillo;
 }

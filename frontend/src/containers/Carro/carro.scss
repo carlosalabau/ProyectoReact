@@ -1,18 +1,30 @@
 .totales{
     background-color: #eee;
     padding: 40px;
+    margin-left: 10px;
 }
-.cartVacio{
-    margin-top: 20px;
+.carritoVacio{
+    padding: 37px;
 }
-.btnCarrito{
-    margin-bottom: 50px;
+.compras>tr:nth-child(1){
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 1px solid black;
+    td{
+        border-right: 1px solid black;
+        padding-left: 10px;
+    }
+    :nth-child(4){
+        border-right: none;
+    }
+}
+.compras>tr:nth-child(1n)>td{
+    padding:10px 0 0 10px
+}
+.ant-notification-close-icon{
+    right: 0;
+    margin-right: 35px;
+    margin-top: -22px;
     position: absolute;
-    bottom: 0;
 }
-.filaCart{
-    position: relative;
-}
-.cartLleno{
 
-}

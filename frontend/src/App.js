@@ -12,7 +12,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Switch>
-          <Route path="/" component={ProductosHome} exact />
+          <Route path="/" component={ProductosHome} exact  forceRefresh={true}/>
           <Route path="/detalles/:_id" component={Detalles} exact />
           <Route path="/tienda" component={Tienda} exact />
           <Route path="/carrito" component={Carro} exact />
