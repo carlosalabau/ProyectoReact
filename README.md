@@ -23,8 +23,14 @@ Esto es lo que veras si has seguido todos los pasos
 
 Pagina inicial
 
+![Screenshot](assets/portada2.png)
+
 Registro
 
 ![Screenshot](assets/registro.png)
+
+Carrito
+
+![Screenshot](assets/carrito.png)
 
 
