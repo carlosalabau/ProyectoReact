@@ -13,6 +13,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import TextField from '@material-ui/core/TextField';
 import { connect } from "react-redux";
 import { login } from "../../redux/actions";
+import axios from 'axios';
 
 const ModalLogin = (props) => {
     const history = useHistory();
@@ -54,13 +55,16 @@ const ModalLogin = (props) => {
         event.preventDefault();
     };
     const [mostrarModal, setMostrarModal] = useState(true)
-
     const Login = (event) => {
         event.preventDefault();
         const user = {
             email: event.target.Lemail.value,
             password: event.target.Lpassword.value
         }
+        axios.get('http://localhost:3000/usuario')
+        .then(res=>{
+
+        })
         login(user)
             .then(res => {
                 notification.success({ message: 'Usuario logueado con éxito' });

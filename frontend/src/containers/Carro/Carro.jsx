@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { clearCart } from '../../redux/actions'
 import { Link } from 'react-router-dom';
 import './carro.scss';
+import { notification } from 'antd';
 import Axios from 'axios';
 
 const Carro = (props) => {
@@ -13,17 +14,21 @@ const Carro = (props) => {
     const [mostrar, setMostrar] = useState(true)
 
     const finalizarPedido = async () => {
-        await Axios.post('http://localhost:3000/pedidos/agregar',
-            { productosId: props.cart.map(producto => producto._id), total: props.cart.reduce((pre, cur) => pre + cur.total, 0) },
-            {
-                headers: {
-                    Authorization: token
-                }
+        if (props.user) {
+            await Axios.post('http://localhost:3000/pedidos/agregar',
+                { productosId: props.cart.map(producto => producto._id), total: props.cart.reduce((pre, cur) => pre + cur.total, 0) },
+                {
+                    headers: {
+                        Authorization: token
+                    }
+                })
+            setTimeout(() => {
+                clearCart()
+                setMostrar(false);
             })
-        setTimeout(() => {
-            clearCart()
-            setMostrar(false);
-        })
+        } else {
+            return (notification.error({ message: 'Necesitas loguearte antes' }))
+        }
     }
     return (
         <div>
@@ -73,11 +78,11 @@ const Carro = (props) => {
                             </div>
                             :
                             <tr>
-                                    <td className="carritoVacio">
+                                <td className="carritoVacio">
                                     <p>Tu carrito esta vacio</p>
                                     <Link to="/tienda"><Button type="primary">Volver a la tienda</Button></Link>
-                                    </td>
-                                </tr> 
+                                </td>
+                            </tr>
                         }
 
                     </div>

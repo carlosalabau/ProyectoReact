@@ -6,7 +6,7 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Axios from "axios";
+import axios from "axios";
 import { notification } from 'antd';
 import FormControl from '@material-ui/core/FormControl';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -14,6 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import TextField from '@material-ui/core/TextField';
+import { useEffect } from 'react';
 
 const ModalRegistro = () => {
     const history = useHistory();
@@ -60,8 +61,13 @@ const ModalRegistro = () => {
         event.preventDefault();
     };
     const [mostrarModal, setMostrarModal] = useState(true)
+    const [emails, setEmails] = useState([{}])
 
-    const Registro = (event) => {
+    const ObtenerEmail = async () => {
+        const usuarios = await axios.get('http://localhost:3000/usuario')
+        setEmails(usuarios.data)
+    }
+    const Registro = async (event) => {
         event.preventDefault();
         const user = {
             nombre: event.target.nombre.value,
@@ -69,17 +75,25 @@ const ModalRegistro = () => {
             email: event.target.email.value,
             password: event.target.password.value
         }
-        Axios.post('http://localhost:3000/usuario/registrar', user)
-            .then(() => {
-                notification.success({ message: 'Usuario creado con éxito' });
-                setMostrarModal(false)
-                setTimeout(() => {
-                    history.push('/')
-                }, 2000)
-            })
-            .catch(console.error)
+        const isPattern = new RegExp('(?=.*[a-z])(?=.*[A-Z]).{8,}')
+        const userEmail = emails.map(email => email.email)
+        if(!isPattern.test(user.password)){
+           return notification.error({ message: 'Introduce al menos 1 mayuscula, 1 minuscula, 1 numero y 6 caracteres o mas' });
+        }
+        if (userEmail.includes(user.email)) {
+            notification.error({ message: 'El usuario ya existe' });
+        } else {
+            await axios.post('http://localhost:3000/usuario/registrar', user)
+            notification.success({ message: 'Usuario creado con éxito' });
+            setMostrarModal(false)
+            setTimeout(() => {
+                history.push('/')
+            }, 2000)
+        }
     }
-
+    useEffect(() => {
+        ObtenerEmail();
+    }, [])
     return (
         <Fragment>
             {mostrarModal &&
@@ -128,7 +142,9 @@ const ModalRegistro = () => {
                                         <Input
                                             id="standard-adornment-password"
                                             type={values.showPassword ? 'text' : 'password'}
-                                            value={values.password} name="password"
+                                            value={values.password} name="password" 
+                                            required
+                                            title="La contraseña debe contener minuscula, mayuscula y 6 caracteres como minimo"
                                             onChange={handleChange('password')}
                                             endAdornment={
                                                 <InputAdornment position="end">

@@ -7,21 +7,8 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { connect } from "react-redux";
 
-const Productos = ({producto},{props}) => {
-    console.log({props})
-    const [usuario, setUsuario] = useState({})
-    const token = localStorage.getItem('authToken')
-    const ObtenerUsuario = async() =>{
-       const res = await axios.get('http://localhost:3000/usuario/user',{
-           headers: {
-               Authorization: token
-           }
-       })
-        setUsuario(res.data)
-    }
-    useEffect(() => {
-        ObtenerUsuario();
-    }, [])
+const Productos = ({ producto }) => {
+
     return (
         <div className="col-xl-4 col-lg-4 col-md-4 box-padre">
             <div className="box-product">
@@ -36,7 +23,7 @@ const Productos = ({producto},{props}) => {
                     </div>
                 </Link>
                 <div className="btn-carrito">
-        {usuario._id && <Button type="primary" onClick={() => addCart(producto, 1)}>Añadir al carrito</Button> }
+                    <Button type="primary" onClick={() => addCart(producto, 1)}>Añadir al carrito</Button>
                 </div>
             </div>
         </div>

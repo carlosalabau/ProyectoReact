@@ -69,7 +69,7 @@ const ProductosHome = (props) => {
         </div>
         <div className="row">
           {productos.slice(0, 6).map((produc) => (
-            <Productos key={produc._id} producto={produc} props={props}/>
+            <Productos key={produc._id} producto={produc} />
           ))}
         </div>
       </div>
