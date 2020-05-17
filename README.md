@@ -18,3 +18,10 @@ Para poder tener el proyecto funcionando en tu PC necesitas realizar lo siguient
 Cuando finalize ejecuta el comando "npm start" para arrancar el servidor.
 2. Dirigirte a la carpeta fronted y ejecutar el comando "npm install" y "npm start". Te dira que el puerto esta usado, para cambiarlo presiona la "Y".
 
+### Vista previa
+
+Esto es lo veras si has seguido todos los pasos
+
+Paginal principal
+
+
