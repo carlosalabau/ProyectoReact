@@ -33,4 +33,7 @@ Carrito
 
 ![Screenshot](assets/carrito.png)
 
+## Autor
+
+Carlos Alabau - Full Stack Developer
 
